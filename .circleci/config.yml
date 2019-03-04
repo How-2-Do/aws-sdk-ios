@@ -175,6 +175,11 @@ jobs:
           path: test_result
 
   integrationtest:
+    description: run integration tests
+    parameters:
+      groupname:
+        default: stable_testList
+        type: string    
     macos:
       xcode: "10.1.0"   
     steps:
@@ -191,7 +196,7 @@ jobs:
           name: run integration tests
           command: |
             mkdir integration_test_result
-            python3 CircleciScripts/run_integrationtests.py  CircleciScripts/IntegrationTestsConfiguration.json  "integration_test_result"
+            python3 CircleciScripts/run_integrationtests.py  CircleciScripts/IntegrationTestsConfiguration.json  "integration_test_result" "<< parameters.groupname >>"
       - run:
           name : check integration test result 
           command : bash CircleciScripts/check_test_result.sh "integration_test_result"
@@ -489,13 +494,22 @@ workflows:
             branches:
               ignore: /gh-.*/
       - integrationtest:
-          requires:
-            - build
+          groupname: stable_testList
           filters:
             branches:
               only:
                 - master
                 - develop
+                - integrationtest
+      - integrationtest:
+          groupname: unstable_testList
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+                - integrationtest
+
       - run_ui_test:
           requires:
             - build

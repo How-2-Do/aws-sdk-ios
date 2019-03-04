@@ -46,12 +46,13 @@ def runtest(otherargments, timeout = 0):
 # a command will like 
 
 if (len(sys.argv) < 3 or sys.argv[1] == '-h' or sys.argv[1] == '-h') : 
-    print("Usage: \r\n {0} <integrationTestsConfiguration json file path> <test result location>".format(sys.argv[0])) ;
+    print("Usage: \r\n {0} <integrationTestsConfiguration json file path> <test result location> <group name>".format(sys.argv[0])) ;
     exit(1)
 
 
 jsonfilename=sys.argv[1]
 test_result_folder=sys.argv[2]
+group_name = sys.argv[3]
 
 with open(jsonfilename, 'r') as jsonfile:
     jsonstring = jsonfile.read()
@@ -69,8 +70,8 @@ buildcommand = f"xcodebuild  build-for-testing -project {projectName} -scheme {s
 exit_code = runcommand(buildcommand)
 if(exit_code != 0):
     exit(exit_code)  
-
-testlist = testConfigure['testList']
+print("group name:", group_name)
+testlist = testConfigure[group_name]
 testcommandhead = f"xcodebuild   test-without-building  -project {projectName} -scheme {schemeName} -sdk {sdkName} -destination 'platform={paltformName},name={deviceName},OS={osVersion}'"
 testcommandtail = "    | tee raw.log  | xcpretty -r junit | tee xcpretty.log"
 for testname in testlist:

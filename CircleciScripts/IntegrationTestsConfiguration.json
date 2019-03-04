@@ -8,7 +8,12 @@
 		'osVersion' : "12.1"
 	} ,
 
-	'testList' : { 
+	'stable_testList' : { 
+    	'AWSSQSTests':{ }
+    },
+
+	'unstable_testList' : { 
     	'AWSSQSTests':{ }
     }
+
 }
