@@ -261,6 +261,7 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
 
     NSString *url = [NSString stringWithFormat:@"%@?response_type=code&client_id=%@&state=%@&redirect_uri=%@&scope=%@&code_challenge=%@&code_challenge_method=S256%@&%@",self.authConfiguration.signInUri, self.authConfiguration.appClientId, self.state,[self urlEncode:self.authConfiguration.signInRedirectUri], [self urlEncode:[self normalizeScopes]], self.proofKeyHash, suffix, [self getQueryStringSuffixForParameters: self.authConfiguration.signInUriQueryParameters]];
 
+#if !TARGET_OS_MACCATALYST
     if (self.useSFAuthenticationSession) {
         if (@available(iOS 11.0, *)) {
             self.sfAuthenticationSessionAvailable = YES;
@@ -279,6 +280,9 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
     } else {
         [self showSFSafariViewControllerForURL:url withPresentingViewController:vc];
     }
+#else
+  [self showSFSafariViewControllerForURL:url withPresentingViewController:vc];
+#endif
 }
 
 -(void)showSFSafariViewControllerForURL:(NSString *)url
@@ -381,7 +385,7 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
         [self setInternalGetSessionErrorAndCancelSignInOperations:error];
     }
     self.isProcessingSignIn = NO;
-
+#if !TARGET_OS_MACCATALYST
     if (self.sfAuthenticationSessionAvailable) {
         [self cleanUpAndCallGetSessionBlock:userSession error:error];
     } else {
@@ -389,6 +393,11 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
             [self cleanUpAndCallGetSessionBlock:userSession error:error];
         }];
     }
+#else
+  [self dismissSafariVC: ^{
+      [self cleanUpAndCallGetSessionBlock:userSession error:error];
+  }];
+#endif
 }
 
 - (void) cleanUpAndCallGetSessionBlock: (nullable AWSCognitoAuthUserSession *) userSession  error:(nullable NSError *) error {
@@ -409,7 +418,7 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
         [self setInternalSignOutErrorAndCancelSignOutOperations:error];
     }
     self.isProcessingSignOut = NO;
-
+#if !TARGET_OS_MACCATALYST
     if (self.sfAuthenticationSessionAvailable) {
         [self cleanUpAndCallSignOutBlock:error];
     } else {
@@ -417,6 +426,11 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
             [self cleanUpAndCallSignOutBlock:error];
         }];
     }
+#else
+    [self dismissSafariVC: ^{
+        [self cleanUpAndCallSignOutBlock:error];
+    }];
+  #endif
 }
 
 - (void) cleanUpAndCallSignOutBlock:(nullable NSError *) error {
@@ -474,7 +488,7 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
     NSString *url = [NSString stringWithFormat:@"%@?%@",
                      self.authConfiguration.signOutUri,
                      [self getQueryStringSuffixForParameters:self.authConfiguration.signOutUriQueryParameters]];
-
+#if !TARGET_OS_MACCATALYST
     if (self.useSFAuthenticationSession) {
         if (@available(iOS 11.0, *)) {
             self.sfAuthenticationSessionAvailable = YES;
@@ -495,6 +509,10 @@ static NSString * AWSCognitoAuthAsfDeviceId = @"asf.device.id";
         [self signOutSFSafariVC:vc
                             url:url];
     }
+#else
+  [self signOutSFSafariVC:vc
+                      url:url];
+#endif
 }
 
 - (void)signOutSFSafariVC: (UIViewController *) vc
