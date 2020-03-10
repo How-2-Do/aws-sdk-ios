@@ -50,7 +50,9 @@ NSString *const AWSCognitoAuthErrorDomain = @"com.amazon.cognito.AWSCognitoAuthE
 API_AVAILABLE(ios(11.0))
 @interface AWSCognitoAuth()
 
+#if !TARGET_OS_MACCATALYST
 @property (nonatomic, strong) SFAuthenticationSession *sfAuthSession;
+#endif
 
 @end
 
