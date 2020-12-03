@@ -1186,7 +1186,6 @@
 		EFDE85FE1FC6535E00D281A2 /* AWSCognitoIdentityProviderASF.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDE85FD1FC6535E00D281A2 /* AWSCognitoIdentityProviderASF.m */; };
 		EFDE86021ED20517008841EC /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB8EF551C6A6A2E0098B15B /* libOCMock.a */; };
 		EFDE86021FC6591900D281A2 /* AWSCognitoIdentityASF.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDE86001FC6591900D281A2 /* AWSCognitoIdentityASF.h */; };
-		EFDE86031FC6591900D281A2 /* libAWSCognitoIdentityProviderASFBinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDE86011FC6591900D281A2 /* libAWSCognitoIdentityProviderASFBinary.a */; };
 		EFDE86041FC65A0600D281A2 /* AWSCognitoIdentityProviderASF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDE85E11FC5DD3D00D281A2 /* AWSCognitoIdentityProviderASF.framework */; };
 		EFDE86091FC65A9A00D281A2 /* AWSCognitoIdentityProviderASF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDE85E11FC5DD3D00D281A2 /* AWSCognitoIdentityProviderASF.framework */; };
 		EFDF14D71C993015002CCFE2 /* AWSCognitoIdentityUser.h in Headers */ = {isa = PBXBuildFile; fileRef = EFDF14BF1C9929AE002CCFE2 /* AWSCognitoIdentityUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1305,6 +1304,7 @@
 		FAFFD9502334292000E2317C /* AWSCoreConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD94F2334292000E2317C /* AWSCoreConfigurationTest.m */; };
 		FAFFD9522334292000E2317C /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0D416D1C6A66E5006B91B5 /* AWSCore.framework */; };
 		FAFFD95F2334293B00E2317C /* AWSCoreServiceConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD95E2334293B00E2317C /* AWSCoreServiceConfigurationTest.m */; };
+		FBBCBE652579642E003C30B0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBCBE642579642E003C30B0 /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4584,6 +4584,7 @@
 		FAFFD95C2334293B00E2317C /* AWSCoreServiceConfigurationTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AWSCoreServiceConfigurationTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFFD95E2334293B00E2317C /* AWSCoreServiceConfigurationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSCoreServiceConfigurationTest.m; sourceTree = "<group>"; };
 		FAFFD9602334293B00E2317C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBBCBE642579642E003C30B0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5421,7 +5422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFDE86031FC6591900D281A2 /* libAWSCognitoIdentityProviderASFBinary.a in Frameworks */,
+				FBBCBE652579642E003C30B0 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5615,6 +5616,7 @@
 		17E6B467209BB99A0079B286 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBBCBE642579642E003C30B0 /* CoreTelephony.framework */,
 				B5A0263622F025E0001C75CE /* libOCMock.a */,
 				B5DD455D22CA6AC9003871AE /* libOCMock.a */,
 			);
@@ -16904,6 +16906,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -16925,6 +16928,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -18238,6 +18242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES[arch=*]" = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -18259,6 +18264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -18608,6 +18614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -18627,6 +18634,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -18869,6 +18877,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -18894,6 +18903,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -19120,6 +19130,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -19145,6 +19156,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -19170,6 +19182,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -19195,6 +19208,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
